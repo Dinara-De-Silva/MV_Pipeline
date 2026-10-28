@@ -61,3 +61,64 @@ def seg(image,t):
             else:
                 output[i,j]=0
     return output
+
+
+
+def remove_small_components(binary, is_white=True):
+    if (is_white):
+        intensity=255
+        result = np.zeros_like(binary)
+    else:
+        intensity=0
+        result = np.full_like(binary, 255)
+        
+    height, width = binary.shape
+
+    visited = np.zeros((height, width), dtype=bool)
+    components = []
+
+    # All 8 neighboring directions
+    neighbors = [
+        (-1, -1), (-1, 0), (-1, 1),
+        ( 0, -1),           ( 0, 1),
+        ( 1, -1), ( 1, 0),  ( 1, 1)
+    ]
+
+    # Scan the image
+    for y in range(height):
+        for x in range(width):
+
+            if binary[y, x] == intensity and not visited[y, x]:
+
+                stack = [(y, x)]
+                visited[y, x] = True
+                component = []
+
+                # Manual flood-fill
+                while stack:
+                    cy, cx = stack.pop()
+                    component.append((cy, cx))
+
+                    for dy, dx in neighbors:
+                        ny = cy + dy
+                        nx = cx + dx
+
+                        if (0 <= ny < height and
+                            0 <= nx < width and
+                            not visited[ny, nx] and
+                            binary[ny, nx] == intensity):
+
+                            visited[ny, nx] = True
+                            stack.append((ny, nx))
+
+                components.append(component)
+    
+
+    # Keep only the largest component
+    if components:
+        largest = max(components, key=len)
+
+        for y, x in largest:
+            result[y, x] = intensity
+
+    return result
