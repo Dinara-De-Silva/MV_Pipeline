@@ -27,7 +27,7 @@ for file in image_files:
         print(gray_img.shape)
         # cv2.imwrite(output_folder+"/"+name+"grey.png", gray_img)
         
-        #3 appliy mean filter to remove outliers
+        #3 appliy median filter to remove outliers
         median_img=median_filter(gray_img,11)
         # cv2.imwrite(output_folder+"/"+name+"median.png", median_img)
 
@@ -44,7 +44,6 @@ for file in image_files:
 
         # 7 chaincode
         code= get_chaincode(output)
-        print(code)
 
         names.append(name)
         codes.append(code)

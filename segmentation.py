@@ -10,22 +10,6 @@ def show_histogram(image, filename):
     print("mean ", mean)
     print(t)
 
-
-    plt.plot(histogram)
-    plt.xlabel("Pixel Intensity")
-    plt.ylabel("Number of Pixels")
-    plt.title("Image Histogram")
-    plt.savefig(f"outputs/{filename}_histogram.png")
-    plt.close()
-
-    
-    plt.plot(smooth)
-    plt.xlabel("Pixel Intensity")
-    plt.ylabel("Number of Pixels")
-    plt.title("Image Histogram")
-    plt.savefig(f"outputs/{filename}smooth_histogram.png")
-    plt.close()
-
     return t
 
 
