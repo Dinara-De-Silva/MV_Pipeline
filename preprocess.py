@@ -77,7 +77,7 @@ def get_gaussian_kernel_2d(k, sigma=1):
     kernel /= np.sum(kernel)
     return kernel
 
-def gaussian_filter(img, k, sigma=1):
+def gaussian_filter(img, k=3, sigma=1):
     H, W= img.shape
     wrapped_img = wrap_image(img, k)
     output = np.zeros((H, W), dtype=np.uint8)
