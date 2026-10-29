@@ -6,9 +6,6 @@ def show_histogram(image, filename):
     histogram = cv2.calcHist([image], [0], None, [256], [0, 256])
     smooth = smooth_histogram(histogram, 3)
     t = find_valley(smooth)
-    mean=np.mean(histogram)
-    print("mean ", mean)
-    print(t)
 
     return t
 

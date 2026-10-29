@@ -1,2 +1,8 @@
-Group 1: im-1
-Group 2: im-8
+Group 1: im-1, im-3, im-4, im-5, im-6
+Group 2: im-10
+Group 3: im-11
+Group 4: im-12
+Group 5: im-2
+Group 6: im-7
+Group 7: im-8
+Group 8: im-9
